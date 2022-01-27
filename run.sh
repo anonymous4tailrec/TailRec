@@ -1,12 +1,7 @@
 #!/bin/bash
-# bert  sasrec  nextitnet gru4rec nfm deepfm caser,narm,stamp
-#/home/zwy/Rec/original_desen_pretrain.csv
-#/home/zwy/Rec/SequenceRec-v2/data/movielen_lenth_30_cold_10.csv
-#/home/zwy/IJCAI/datasets/lastfm20.csv
-#/home/zwy/IJCAI/datasets/movielens30_new.csv
 python main.py \
---data_path /home/zwy/sigir/datasets/deginetica20.csv \
---save_path /home/zwy/Rec/Tail-a/sasrec-deg-tail \
+--data_path /home/deginetica20.csv \
+--save_path /home/sasrec-deg-tail \
 --d_model 64 \
 --max_len 20 \
 --attn_heads 4 \
@@ -27,4 +22,3 @@ python main.py \
 --enable_sample 0 \
 --sampled_evaluation 0 \
 --samples_ratio 0.01 \
-#如果是画像任务选择accuracy 否则选NDCG

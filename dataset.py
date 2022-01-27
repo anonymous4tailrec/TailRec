@@ -22,14 +22,14 @@ class TrainDataset(Data.Dataset):
     def __init__(self, args):
 
         self.data = pd.read_csv(args.data_path, header=None).replace(-1,0).values
-        self.num_user = self.data.shape[0] #pre-train 1470149
+        self.num_user = self.data.shape[0] 
 
-        self.num_item = self.data.max() # pre-train 1382398
+        self.num_item = self.data.max() 
         if args.eval_per_steps == 0:
             args.eval_per_steps = self.num_user//args.train_batch_size
-        self.mask_token = args.num_item + 1 # 这里的mask和pre-train中一样 因此使用args中的
+        self.mask_token = args.num_item + 1 
         self.enable_sample = args.enable_sample
-        self.sample_size = (args.samples_ratio * args.num_item) // args.train_batch_size # 验证集采样选择固定值100
+        self.sample_size = (args.samples_ratio * args.num_item) // args.train_batch_size 
         self.mask_prob = args.mask_prob
         self.max_len = args.max_len
         self.model = args.model

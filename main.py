@@ -42,9 +42,6 @@ def main():
 
     train_dataset = TrainDataset(args)
     train_loader = Data.DataLoader(train_dataset, batch_size=args.train_batch_size, shuffle=True)
-    
-    # val_dataset  = EvalDataset(args, mode='val')
-    # val_loader  = Data.DataLoader(val_dataset, batch_size=args.test_batch_size)
 
     test_dataset = EvalDataset(args, mode='test')
     test_loader = Data.DataLoader(test_dataset, batch_size=args.test_batch_size)

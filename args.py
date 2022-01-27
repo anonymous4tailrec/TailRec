@@ -8,11 +8,8 @@ import re
 import torch
 parser = argparse.ArgumentParser()
 # dataset and dataloader args
-#/data/wyzhang/datasets/SequenceRec/conure_data/original_desen_pretrain.csv
-#/home/zwy/Rec/original_desen_pretrain.csv
-#/home/zwy/Rec/SequenceRec-v3/data/movielen_lenth_30_cold_10.csv
-#/home/zwy/IJCAI/datasets/lastfm20.csv
-parser.add_argument('--data_path', type=str, default='/home/zwy/Rec/original_desen_pretrain.csv')
+
+parser.add_argument('--data_path', type=str, default='/home/movielens.csv')
 parser.add_argument('--save_path', type=str, default='test')
 parser.add_argument('--device', type=str, default='cpu')
 parser.add_argument('--max_len', type=int, default=50)

@@ -27,7 +27,6 @@ class CE:
             seq,labels = batch
 
         pred = self.model(batch)  # B * L * N
-        #del batch
         if self.enable_sample:
             cl = torch.LongTensor([0]*pred.size(0)).to(self.device)
             loss = self.ce(pred, cl)
