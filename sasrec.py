@@ -12,7 +12,10 @@ class IndexLinear(nn.Module):
 
     def __init__(self, embedding_dim, num_classes,enable_sample,sampled_evaluation):
         super(IndexLinear, self).__init__()
+        # use Embedding to store the output embedding
+        # it's efficient when it comes sparse update of gradients
         self.emb = nn.Embedding(num_classes, embedding_dim)
+        # self.bias = nn.Parameter(torch.Tensor(num_classes))
         self.bias = nn.Embedding(num_classes, 1)
         self.enable_sample = enable_sample
         self.sampled_evaluation = sampled_evaluation
@@ -232,6 +235,7 @@ class sasrec(nn.Module):
 
 
     def forward(self, batch):
+#        print('index_item:'+str(self.index_item.device()))
 
         if self.enable_sample and self.training:
             x,labels,negs = batch

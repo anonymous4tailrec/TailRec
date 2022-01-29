@@ -8,13 +8,13 @@ import re
 import torch
 parser = argparse.ArgumentParser()
 # dataset and dataloader args
-
-parser.add_argument('--data_path', type=str, default='/home/movielens.csv')
+parser.add_argument('--data_path', type=str, default='/home/movielens30.csv')
 parser.add_argument('--save_path', type=str, default='test')
 parser.add_argument('--device', type=str, default='cpu')
 parser.add_argument('--max_len', type=int, default=50)
 parser.add_argument('--mask_prob', type=float, default=0.3)
 parser.add_argument('--train_batch_size', type=int, default=32)
+parser.add_argument('--val_batch_size', type=int, default=32)
 parser.add_argument('--test_batch_size', type=int, default=32)
 parser.add_argument('--up', default=47, type=int ) 
 parser.add_argument('--down', default=0, type=int ) 

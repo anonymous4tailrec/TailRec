@@ -39,8 +39,8 @@ class TrainDataset(Data.Dataset):
 
     def __getitem__(self, index):
         
-        seq = self.data[index, -self.max_len - 2:-2].tolist()
-        labels = [self.data[index,-2].tolist()]
+        seq = self.data[index, -self.max_len - 3:-3].tolist()
+        labels = [self.data[index,-3].tolist()]
         padding_len = self.max_len - len(seq)
         seq = [0] * padding_len + seq  
         labels = [0] * (self.max_len-1)+labels
@@ -70,8 +70,8 @@ class EvalDataset(Data.Dataset):
         return self.num_user
 
     def __getitem__(self, index):
-        seq = self.data[index, :-1]
-        pos = self.data[index, -1]
+        seq = self.data[index, :-2] if self.mode == 'val' else self.data[index, :-1]
+        pos = self.data[index, -2] if self.mode == 'val' else self.data[index, -1]
 
         seq = list(seq)
         seq = seq[-self.max_len:]

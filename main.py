@@ -42,6 +42,9 @@ def main():
 
     train_dataset = TrainDataset(args)
     train_loader = Data.DataLoader(train_dataset, batch_size=args.train_batch_size, shuffle=True)
+    
+    val_dataset  = EvalDataset(args, mode='val')
+    val_loader  = Data.DataLoader(val_dataset, batch_size=args.test_batch_size)
 
     test_dataset = EvalDataset(args, mode='test')
     test_loader = Data.DataLoader(test_dataset, batch_size=args.test_batch_size)
@@ -51,7 +54,7 @@ def main():
 
     model = sasrec(args, index_item)
     
-    trainer = Trainer(args, model, train_loader, test_loader)
+    trainer = Trainer(args, model, train_loader, val_loader, test_loader)
     
     print('train process ready')
     argsDict = args.__dict__

@@ -10,10 +10,11 @@ import torch.utils.data as Data
 
 
 class Trainer():
-    def __init__(self, args, model, train_loader, test_loader):
+    def __init__(self, args, model, train_loader, val_loader, test_loader):
         self.args = args
         self.device = args.device
         self.train_loader = train_loader
+        self.val_loader = val_loader
         self.test_loader = test_loader
         self.lr_decay = args.lr_decay_rate
         self.lr_decay_steps = args.lr_decay_steps
@@ -77,7 +78,7 @@ class Trainer():
                 print(self.step)
                 self.sample_time = 0
                 metric = {}
-                for mode in ['test']:
+                for mode in ['val','test']:
                     metric[mode] = self.eval_model(mode)
                 print(metric)
                 self.result_file = open(self.save_path + '/result.txt', 'a+')
@@ -96,7 +97,7 @@ class Trainer():
 
     def eval_model(self, mode):
         self.model.eval()
-        tqdm_data_loader = tqdm(self.test_loader)
+        tqdm_data_loader = tqdm(self.val_loader) if mode == 'val' else tqdm(self.test_loader)
         metrics = {}
         with torch.no_grad():
             for idx, batch in enumerate(tqdm_data_loader):
