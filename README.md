@@ -1,7 +1,7 @@
 # TailRec-anonymous
 ## TailRec
 
-anonymous repo for SIGIR 2022 
+anonymous repo for CIKM 2022 
 
 ## Requirements
 
